@@ -16,7 +16,7 @@ public class SimpleTest {
     private WebDriver driver;
 
     @BeforeTest
-    public void setUp(){
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -24,7 +24,7 @@ public class SimpleTest {
 
     @Test
     public void executeSimpleTest() {
-        driver.get("http://saucedemo.com");
+        driver.get("http://saucedemo.com/");
 
         //намираме елемент userInput и въвеждаме потребителско
         WebElement userNameInput = driver.findElement(By.id("user-name"));
@@ -42,19 +42,18 @@ public class SimpleTest {
         list.selectByVisibleText("Name (Z to A)");
 
 
-        WebElement addToCart = driver.findElement(By.xpath("//div[text()='Sauce Labs Backpack']//ancestor::div[@class='inventory_item']"));
+        WebElement addToCart = driver.findElement(By.xpath("//div[text()='Sauce Labs Backpack']//ancestor::div[@class='inventory_item']//button"));
         addToCart.click();
 
         WebElement badge = driver.findElement(By.cssSelector(".shopping_cart_badge"));
         assertEquals(badge.getText(), "1");
 
 
-
     }
 
     @AfterTest
-    public void tearDown(){
-    //    driver.close();  //само затваря браузъра
-      //  driver.quit();  //спира самия селениум, разваля връзката
+    public void tearDown() {
+        //    driver.close();  //само затваря браузъра
+          driver.quit();  //спира самия селениум, разваля връзката
     }
 }
