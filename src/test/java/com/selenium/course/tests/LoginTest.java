@@ -2,13 +2,9 @@ package com.selenium.course.tests;
 
 import com.opencsv.exceptions.CsvException;
 import com.selenium.course.base.TestUtil;
-import com.selenium.course.tests.utils.CsvReader;
+import com.selenium.course.utils.CsvReader;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -19,7 +15,7 @@ public class LoginTest extends TestUtil {
 
     @BeforeTest
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }*/
@@ -37,7 +33,7 @@ public class LoginTest extends TestUtil {
     }
 
     @Test(dataProvider = "login-data-file")
-    public void executeSimpleTest(String userName, String password) {
+    public void executeSimpleTest(String userName, String password) throws InterruptedException{
       //  driver.get("http://saucedemo.com/");
 
         //намираме елемент userInput и въвеждаме потребителско
